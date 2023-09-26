@@ -1,0 +1,170 @@
+[tool.poetry]
+name = "Homework 1"
+version = "0.1.0"
+description = "Source code for homework 1"
+authors = ["@knightsider"]
+
+[tool.poetry.dependencies]
+python = "~=3.11"
+fastapi = "~=0.103.1"
+uvicorn = "~=0.18.3"
+uvloop = "~=0.17.0"
+pydantic-settings = "~=2.0.3"
+python-dotenv = "~=1.0.0"
+
+[tool.poetry.group.linters.dependencies]
+black = "~=23.9.1"
+isort = "~=5.12.0"
+Flake8-pyproject = "~=1.2.3"
+pylint = "~=2.17.6"
+pre-commit = "~=3.4.0"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "~=1.5.1"
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git", "__pycache__"]
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+include_trailing_comma = true
+
+[tool.mypy]
+python_version = "3.11"
+incremental = true
+strict = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = false
+disallow_untyped_decorators = true
+disallow_any_generics = false
+no_implicit_optional = true
+warn_unreachable = true
+warn_return_any = true
+show_error_context = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[tool.pylint]
+    [tool.pylint.master]
+    ignore = ['CVS']
+    jobs = 1
+    persistent = ['yes']
+    unsafe-load-any-extension=['no']
+    max-complexity = 7
+    max-try-statements = 4
+    suggestion-mode = ['yes']
+    load-plugins = [
+        "pylint.extensions.mccabe",
+        "pylint.extensions.bad_builtin",
+        "pylint.extensions.check_elif",
+        "pylint.extensions.broad_try_clause",
+        "pylint.extensions.redefined_variable_type",
+        "pylint.extensions.overlapping_exceptions",
+        "pylint.extensions.comparetozero",
+        "pylint.extensions.emptystring"
+    ]
+
+    [tool.pylint.'MESSAGES CONTROL']
+    disable = [
+        "import-error",
+        "no-name-in-module",
+        "missing-module-docstring",
+        "missing-class-docstring",
+        "too-few-public-methods",
+        "unused-variable",
+        "fixme"
+    ]
+
+    enable = 'c-extension-no-member'
+
+    [tool.pylint.'REFACTORING']
+    max-nested-blocks = 5
+    never-returning-functions = ['sys.exit']
+
+    [tool.pylint.'LOGGING']
+    logging-modules = 'logging'
+    logging-format-style = 'new'
+
+    [tool.pylint.'SPELLING']
+    max-spelling-suggestions = 4
+
+    [tool.pylint.'MISCELLANEOUS']
+    notes = ['FIXME,TODO']
+
+    [tool.pylint.'TYPECHECK']
+    contextmanager-decorators = ['contextlib.contextmanager']
+    ignore-mixin-members = 'yes'
+    ignore-on-opaque-inference = 'yes'
+    ignored-classes = 'thread._local,_thread._local'
+    ignored-modules = 'asyncio'
+    missing-member-hint = 'yes'
+    allow-global-unused-variables = 'no'
+    init-import = 'no'
+    redefining-builtins-modules = ['past.builtins', 'future.builtins', 'io']
+
+    [tool.pylint.'FORMAT']
+    ignore-long-lines = '^\s*(# )?<?https?://\S+>?$'
+    indent-after-paren = 4
+    max-line-length=120
+    max-module-lines=500
+    single-line-class-stmt = 'no'
+    single-line-if-stmt = 'no'
+
+    [tool.pylint.'SIMILARITIES']
+    ignore-comments = 'yes'
+    ignore-docstrings = 'yes'
+    ignore-imports = 'yes'
+    ignore-signatures = 'yes'
+    min-similarity-lines = 4
+
+    [tool.pylint.'BASIC']
+    argument-naming-style = 'snake_case'
+    attr-naming-style = 'snake_case'
+    class-attribute-naming-style = 'any'
+    class-naming-style = 'PascalCase'
+    const-naming-style = 'UPPER_CASE'
+    docstring-min-length = -1
+    function-naming-style = 'snake_case'
+    good-names=['i', 'j', '_', 'ts', 'db', 'env']
+    include-naming-hint = 'yes'
+    inlinevar-naming-style = 'any'
+    method-naming-style = 'snake_case'
+    module-naming-style = 'snake_case'
+    no-docstring-rgx = '^_'
+    variable-naming-style = 'snake_case'
+
+    [tool.pylint.'IMPORTS']
+    allow-wildcard-with-all = 'no'
+    analyse-fallback-blocks = 'no'
+
+    [tool.pylint.'CLASSES']
+    defining-attr-methods = ['__init__', '__new__']
+    valid-classmethod-first-arg = 'cls'
+    valid-metaclass-classmethod-first-arg = 'mcs'
+
+    [tool.pylint.'DESIGN']
+    max-args=5
+    max-attributes=10
+    max-bool-expr=5
+    max-branches=12
+    max-locals=10
+    max-parents=4
+    max-public-methods=12
+    max-returns=5
+    max-statements=30
+    min-public-methods=2
+
+    [tool.pylint.'EXCEPTIONS']
+    overgeneral-exceptions = ['builtins.BaseException', 'builtins.Exception']
